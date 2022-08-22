@@ -68,7 +68,7 @@ function Card(props) {
                   <img src={img} className="card-img-top" alt="..." />
                   <div className="card-body">
                     <h5 className="card-title">{a.title}</h5>
-                    <Link to="/projectDetail" className='more-detail'><button className="btn">More Detail</button></Link>
+                    <Link to="projectDetail" className='more-detail'><button className="btn">More Detail</button></Link>
                   </div>
                 </div>
               </div>
