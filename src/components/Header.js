@@ -1,12 +1,20 @@
 import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
-import logo from '../image/brandName.png'
+import logo from '../image/logo.png'
+import { useDispatch } from "react-redux"
+
 
 
 function Header() {
     const [searchName, setSearchName] = useState('')
+    const dispatch = useDispatch()
+
     const handleSearch = (e) => {
         e.preventDefault();
+        dispatch({
+            type: "searchData",
+            payload: searchName
+        })
     }
 
 

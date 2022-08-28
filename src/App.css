@@ -7,67 +7,41 @@
 }
 
 /* Loading spin */
-.container-load {
-  width: 100vw;
-  height: 100vh;
-  position: fixed;
-  top: 0;
-  left: 0;
-  display: flex;
-  flex-direction: column;
-  align-items: stretch;
-  justify-content: center;
-  align-content: center;
-}
-
-.flex {
-  min-height: 60pt;
-}
-
-@keyframes loading {
-  0% {
-    width: 50pt;
-    height: 50pt;
-    margin-top: 0;
-  }
-
-  25% {
-    height: 4pt;
-    margin-top: 23pt;
-  }
-
-  50% {
-    width: 4pt;
-  }
-
-  75% {
-    width: 50pt;
-  }
-
-  100% {
-    width: 50pt;
-    height: 50pt;
-    margin-top: 0;
-  }
-}
-
 .loader {
-  width: 50pt;
-  height: 50pt;
-  border-radius: 100%;
-  border: #6767fa 4pt solid;
-  margin-left: auto;
-  margin-right: auto;
-  background-color: transparent;
-  animation: loading 1s infinite;
+  font-size: 48px;
+  color: #3772d9;
+  display: inline-block;
+  font-family: Arial, Helvetica, sans-serif;
+  font-weight: 400;
+  position: relative;
 }
 
-.load-text {
-  padding-top: 15px;
-  text-align: center;
-  font: 14pt "Helvetica Neue", Helvetica, Arial, sans-serif;
-  color: lighten(#6767fa, 75%);
+.loader:after {
+  content: 'Loading';
+  position: relative;
+  z-index: 5;
 }
+
+.loader:before {
+  content: '';
+  height: 6px;
+  border: 1px solid;
+  border-radius: 10px;
+  width: 100%;
+  position: absolute;
+  bottom: 0px;
+  background: linear-gradient(red 100%, transparent 0) no-repeat;
+  background-size: 0% auto;
+  animation: 1.2s lineGrow linear infinite;
+}
+
+@keyframes lineGrow {
+  to {
+    background-size: 100% auto
+  }
+}
+
+
 
 
 /* NavBar */
@@ -87,6 +61,7 @@
 .main-nav {
   z-index: 100;
   width: 100%;
+  padding: 8px 22px;
 }
 
 .main-nav-brandName {
@@ -94,8 +69,9 @@
 }
 
 .main-nav-brandName img {
-  width: 50px;
+  width: 70px;
   height: 40px;
+  object-fit: cover;
 }
 
 .nav-right {
@@ -164,6 +140,7 @@
   align-items: center;
   -webkit-box-shadow: 0px 0px 17px -4px #3772d9;
   box-shadow: 0px 0px 17px -4px #3772d9;
+  border-radius: 10px;
 }
 
 .main-home .card img {
@@ -320,14 +297,14 @@
 .main-projectDetail {
   width: 100%;
   margin: 0px auto;
-  padding: 15px 0px;
+  padding: 15px 22px;
   display: flex;
   justify-content: center;
   align-items: center;
 }
 
 .project-header {
-  width: 98%;
+  width: 100%;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -408,7 +385,7 @@
   width: 500px;
 }
 
-table {
+.project-detail-main table {
   border-spacing: 1;
   border-collapse: collapse;
   background: white;
@@ -418,36 +395,36 @@ table {
   position: relative;
 }
 
-table * {
+.project-detail-main table * {
   position: relative;
 }
 
-table thead tr {
+.project-detail-main table thead tr {
   height: 60px;
   background: #36304a;
 }
 
-table tbody tr {
+.project-detail-main table tbody tr {
   height: 50px;
 }
 
-table td,
-table th {
+.project-detail-main table td,
+.project-detail-main table th {
   text-align: center;
 }
 
-table td.l,
-table th.l {
+.project-detail-main table td.l,
+.project-detail-main table th.l {
   text-align: center;
 }
 
-table td.c,
-table th.c {
+.project-detail-main table td.c,
+.project-detail-main table th.c {
   text-align: center;
 }
 
-table td.r,
-table th.r {
+.project-detail-main table td.r,
+.project-detail-main table th.r {
   text-align: center;
 }
 
@@ -459,11 +436,11 @@ table th.r {
   font-weight: unset;
 }
 
-tbody tr:nth-child(even) {
+.project-detail-main tbody tr:nth-child(even) {
   background-color: #f5f5f5;
 }
 
-tbody tr {
+.project-detail-main tbody tr {
   font-family: OpenSans-Regular;
   font-size: 15px;
   color: #808080;
@@ -471,7 +448,7 @@ tbody tr {
   font-weight: unset;
 }
 
-tbody tr:hover {
+.project-detail-main tbody tr:hover {
   color: #555555;
   background-color: #f5f5f5;
   cursor: pointer;
@@ -609,7 +586,7 @@ tbody tr:hover {
     height: 100%;
     display: block;
   }
-  
+
 
   .main-home .card {
     width: 80%;
@@ -627,7 +604,7 @@ tbody tr:hover {
 
   .main-login form .btn {
     font-size: 15px;
-  } 
+  }
 
   /* .container-table100 {
     padding-left: 5px;
@@ -641,10 +618,10 @@ tbody tr:hover {
   }
 */
 
-
 }
 
 
+/* Pagination */
 
 .pagination {
   width: 100%;
@@ -672,6 +649,474 @@ tbody tr:hover {
 
 .pagination button.active {
   font-weight: 900;
+  border-color: #3772d9;
+  background: #3772d9;
+  color: #eee;
+}
+
+
+
+/* Admin Panel */
+.admin-form {
+  background-image: url(./image/homebackground.webp);
+  min-height: 100vh;
+  background-size: cover;
+  background-repeat: no-repeat;
+
+}
+
+.limiter-admin {
+  width: 100%;
+  margin: 0 auto;
+}
+
+.container-table100-admin {
+  width: 100%;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  padding-top: 33px;
+  padding-left: 30px;
+  padding-right: 30px;
+}
+
+.wrap-table100-admin {
+  width: 1170px;
+}
+
+.wrap-table100-last-admin {
+  width: 500px;
+}
+
+.admin-form table {
+  border-spacing: 1;
+  border-collapse: collapse;
+  background: #f5f5f5;
+  border-radius: 10px;
+  overflow: hidden;
+  width: 100%;
+  position: relative;
+}
+
+.admin-form table * {
+  position: relative;
+}
+
+.admin-form table thead tr {
+  height: 50px;
+  background: #36304a;
+}
+
+.admin-form table tbody tr {
+  height: 50px;
+}
+
+.admin-form table td,
+.admin-form table th {
+  text-align: center;
+}
+
+.admin-form table td.l,
+.admin-form table th.l {
+  text-align: center;
+}
+
+.admin-form table td.c,
+.admin-form table th.c {
+  text-align: center;
+}
+
+.admin-form table td.r,
+.admin-form table th.r {
+  text-align: center;
+}
+
+.admin-form .table100-head th {
+  font-family: OpenSans-Regular;
+  font-size: 16px;
+  color: #fff;
+  line-height: 1.2;
+  font-weight: unset;
+}
+
+.admin-form tbody tr:nth-child(odd) {
+  background-color: #e8e7e7;
+}
+
+.admin-form tbody tr {
+  font-family: OpenSans-Regular;
+  font-size: 15px;
+  color: #808080;
+  line-height: 1.2;
+  font-weight: unset;
+}
+
+.admin-form tbody tr:hover {
+  cursor: pointer;
+}
+
+.admin-form .column1 {
+  width: 260px;
+}
+
+.admin-form .column2 {
+  width: 160px;
+}
+
+.admin-form .column3 {
+  width: 245px;
+}
+
+.admin-form .column4 {
+  width: 210px;
+  text-align: center;
+}
+
+.admin-form .column5 {
+  width: 170px;
+  text-align: center;
+}
+
+.admin-form .column6 {
+  width: 270px;
+  text-align: center;
+}
+
+.admin-form .column7 {
+  width: 170px;
+  text-align: center;
+}
+
+
+.admin-form input {
+  outline: none;
+  height: 40px;
+  border-radius: 10px;
+  border:1px solid gray;
+  font-size: 14px;
+  text-align: center;
+}
+
+.admin-form input:focus {
+  border: 1px solid #3772d9;
+}
+
+.admin-form .list {
+  padding: 5px 0px;
+  border-bottom: 1px solid #e8e7e7;
+  height: 100%;
+}
+
+.admin-form .list:hover {
+  background-color: #fff;
+}
+
+.admin-form .tags-input-container {
+  padding: 0.5rem;
+  border-radius: 3px;
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+}
+
+.admin-form .tag-item {
+  background-color: rgb(205, 201, 201);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0.5rem 0.75rem;
+  border-radius: 20px;
+  color: #000;
+}
+
+.admin-form .tag-item .close {
+  height: 22px;
+  width: 22px;
+  background-color: green !important;
+  display: flex;
+  color: #fff;
+  border-radius: 50%;
+  align-items: center;
+  justify-content: center;
+  font-size: 15px;
+  margin-left: 5px;
+  cursor: pointer;
+}
+
+.admin-form .tag-item .close:hover {
+  background-color: red !important;
+}
+
+.admin-form .tag-input {
+  border: none !important;
+  outline: none !important;
+}
+
+
+
+
+
+
+
+
+.dataTable {
+  min-height: 100vh;
+  width: 100%;
+  padding: 20px;
+  background-color: #cdcfd0;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+
+}
+
+.dataTable .Table {
+  position: relative;
+  width: 80%;
+  height: 60vh;
+}
+
+.dataTable .datatableTitle {
+  width: 100%;
+  font-size: 24px;
+  color: gray;
+  margin-bottom: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+}
+
+.dataTable .link {
+  text-decoration: none;
+  color: green;
+  font-size: 16px;
+  font-weight: 400;
+  border: 1px solid green;
+  padding: 5px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+
+.dataTable .editButton {
+  padding: 2px 5px;
+  border-radius: 5px;
+  margin: 2px;
+  color: darkblue;
+  border: 1px dotted rgba(0, 0, 139, 0.596);
+  cursor: pointer;
+  outline: none;
+
+}
+
+.dataTable .deleteButton {
+  outline: none;
+  margin: 2px;
+  padding: 2px 5px;
+  border-radius: 5px;
+  color: crimson;
+  border: 1px dotted rgba(220, 20, 60, 0.6);
+  cursor: pointer;
+}
+
+.cellImg {
+  width: 35px;
+  height: 35px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-right: 20px;
+}
+
+
+.dataTable table {
+  border-spacing: 1;
+  border-collapse: collapse;
+  background: #f5f5f5;
+  border-radius: 10px;
+  overflow: hidden;
+  width: 100%;
+  position: relative;
+}
+
+.dataTable table * {
+  position: relative;
+}
+
+.dataTable table thead tr {
+  height: 60px;
+  background: #36304a;
+}
+
+.dataTable table tbody tr {
+  height: 50px;
+}
+
+.dataTable table td,
+.dataTable table th {
+  text-align: center;
+}
+
+.dataTable table td.l,
+.dataTable table th.l {
+  text-align: center;
+}
+
+.dataTable table td.c,
+.dataTable table th.c {
+  text-align: center;
+}
+
+.dataTable table td.r,
+.dataTable table th.r {
+  text-align: center;
+}
+
+.dataTable thead th {
+  font-family: OpenSans-Regular;
+  font-size: 16px;
+  color: #fff;
+  line-height: 1.2;
+  font-weight: unset;
+}
+
+.dataTable tbody tr:nth-child(odd) {
+  background-color: #e8e7e7;
+}
+
+.dataTable tbody tr {
+  font-family: OpenSans-Regular;
+  font-size: 15px;
+  color: #808080;
+  line-height: 1.2;
+  font-weight: unset;
+}
+
+.dataTable tbody tr:hover {
+  cursor: pointer;
+}
+
+.popUp {
+  width: 100%;
+  height: 100vh;
+  background-color: rgba(149, 145, 145, 0.189);
+  position: fixed;
+  top: 0;
+  left: 0;
+  display: none;
+  justify-content: center;
+  align-items: center;
+
+}
+
+.table-modal {
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+  position: relative;
+  width: 500px;
+  height: 300px;
+  background-color: white;
+}
+
+.popUp.activePopUp {
+  display: flex !important;
+}
+
+.table-modal span {
+  position: absolute;
+  width: 30px;
+  height: 30px;
+  right: 5px;
+  top: 5px;
+  background-color: #3772d9;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 5px;
+  color: #fff;
+}
+
+.table-modal form {
+  display: flex;
+  justify-content: left;
+  align-items: center;
+  flex-direction: column;
+  border: 3px solid #fff;
+  background-color: #fff;
+  padding: 50px;
+  position: relative;
+}
+
+.table-modal form label {
+  margin-top: 20px;
+  width: 100%;
+  text-align: left;
+  font-family: OpenSans-Regular;
+  font-size: 20px;
+  line-height: 1.2;
+
+}
+
+.table-modal form input {
+  font-family: inherit;
+  width: 100%;
+  outline: none;
+  border-radius: 4px;
+  border: 1px solid #3772d9;
+  display: block;
+  box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.16);
+  font-size: 17px;
+  padding: 5px 10px;
+
+}
+
+.table-modal button {
+  outline: none;
+  border: none;
+  cursor: pointer;
+  display: inline-block;
+  margin: 10px auto;
+  padding: 0.9rem 2.5rem;
+  text-align: center;
+  background-color: green;
+  color: #fff;
+  border-radius: 4px;
+  box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.16);
+  font-size: 17px;
+}
+
+.dataTable .pagination {
+  width: 100% !important;
+
+  margin: 1rem;
+  position: absolute;
+  bottom: 10px;
+
+}
+
+.dataTable .pagination button {
+  width: 22px;
+  height: 22px;
+  font-family: inherit;
+  font-size: 12px;
+  margin: 0 10px;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  background: transparent;
+  color: #3772d9;
+  border-color: #3772d9;
+  outline: none;
+}
+
+.dataTable .pagination button.active {
   border-color: #3772d9;
   background: #3772d9;
   color: #eee;

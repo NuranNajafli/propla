@@ -5,10 +5,10 @@ import Header from './Header'
 
 
 
-function Home(props) {
+function Home() {
   return (
     <div className='main-home'>
-    <Header  />
+    <Header />
     <CardPage />
     </div>
   )
